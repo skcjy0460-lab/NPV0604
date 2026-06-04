@@ -702,7 +702,7 @@ with tabs[1]:
             '환자수': '{:,.0f}',
             '1인당매출(만원)': '{:,.0f}'
         }).background_gradient(subset=['이익률(%)'], cmap='RdYlGn')
-         .applymap(lambda v: 'color: #34d399' if isinstance(v, (int,float)) and v > 0 else 'color: #f87171',
+         .map(lambda v: 'color: #34d399' if isinstance(v, (int,float)) and v > 0 else 'color: #f87171',
                    subset=['순이익(만원)']),
         use_container_width=True, height=300
     )
@@ -1769,7 +1769,7 @@ with tabs[6]:
         
         stress_df = pd.DataFrame(stress_results)
         st.dataframe(
-            stress_df.style.applymap(
+            stress_df.style.map(
                 lambda v: 'color: #f87171' if isinstance(v, (int,float)) and v < 0 else 'color: #34d399' if isinstance(v, (int,float)) and v > 0 else '',
                 subset=['이익 충격(만원)', '충격 후 순이익(만원)', '이익 변화율(%)']
             ),
